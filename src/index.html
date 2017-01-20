@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>/*Redirect with trailing slash so relative links work*/var l = window.location, p = l.pathname; if (p.substr(p.length - 1) !== '/') l.href = l.href + '/'</script>
+        <title>inPhood Serverless Database</title>
+        <style>
+            body {
+                width: 600px;
+                margin: auto;
+            }
+            .resources > h2 {
+                margin-bottom: 0;
+            }
+            .resource > h3, .resource > p {
+                display: inline-block;
+                margin-bottom: 0.5rem;
+            }
+            .resource > code {
+                display: block;
+                background-color: #eff0f1;
+                color: #393318;
+                padding: 5px;
+                font-family: Consolas,Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,sans-serif;
+                white-space: nowrap;
+                overflow-x: auto;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>inPhood Serverless Express Elastisearch Database</h1>
+        <section class="resources">
+            <h2>Resources</h2>
+            <section class="resource">
+                <h3><a class="resource-example-link" href=""ingredients>GET /ingredients</a></h3>
+                <p>Returns a list of all ingredients.</p>
+                <code>curl <span class="api-base-url"></span>ingredients</code>
+            </section>
+            <section class="resource">
+                <h3>POST /ingredients</h3>
+                <p>Creates a new ingredient.</p>
+                <code>curl <span class="api-base-url"></span>ingredients -X POST -d '{"name":"kale"}' --header 'content-type: application/json'</code>
+            </section>
+            <section class="resource">
+                <h3><a class="resource-example-link" href="ingredients/1">GET /ingredients/:ingredientId</a></h3>
+                <p>Returns a single ingredient.</p>
+                <code>curl <span class="api-base-url"></span>ingredients/1</code>
+            </section>
+            <section class="resource">
+                <h3>PUT /ingredients/:ingredientId</h3>
+                <p>Updates an existing ingredient.</p>
+                <code>curl <span class="api-base-url"></span>ingredients/1 -X PUT -d '{"name":"kale"}' --header 'content-type: application/json'</code>
+            </section>
+            <section class="resource">
+                <h3>DELETE /ingredients/:ingredientId</h3>
+                <p>Deletes an existing ingredient.</p>
+                <code>curl <span class="api-base-url"></span>ingredients/1 -X DELETE</code>
+            </section>
+        </section>
+        <script>
+            var baseUrl = window.location.href
+            var baseUrlElements = document.getElementsByClassName('api-base-url')
+            for(var i = 0; i < baseUrlElements.length; ++i) baseUrlElements[i].innerText = baseUrl
+        </script>
+    </body>
+</html>

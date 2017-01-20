@@ -1,0 +1,33 @@
+{
+  "name": "inphood-dbsearch-lambda",
+  "version": "1.0.0",
+  "description": "This tool uses Express, AWS Lambda and Amazon API Gateway to respond to web and API requests.",
+  "keywords": [
+    "aws",
+    "serverless",
+    "api",
+    "gateway",
+    "lambda",
+    "express"
+  ],
+  "homepage": "https://www.inphood.com",
+  "license": "Apache-2.0",
+  "files": [
+    "index.js",
+    "middleware.js"
+  ],
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/inphood/dbSearchLambda"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "devDependencies": {
+    "jest": "^16.0.2"
+    },
+    "scripts": {
+        "test": "jest"
+    }
+}
