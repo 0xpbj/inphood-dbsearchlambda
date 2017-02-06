@@ -64,7 +64,7 @@ exports.paths = [
     path: "/global/nutritionInfo",
     index: "firebase",
     type: "NutritionInfo",
-    fields: ['Description']
+    fields: ['Description', 'inPhood001']
   }
   // {
   //   path : "users",
