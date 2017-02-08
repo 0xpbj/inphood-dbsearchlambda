@@ -62,7 +62,7 @@ app.post('/ingredients', (req, res) => {
     // }'
 
     // command format
-    //curl https://xmucc9zjlh.execute-api.us-west-2.amazonaws.com/prod/ingredients -X POST -d '{"query": {"match": {"Description": "kale"}}, "size": 1}' --header 'content-type: application/json'
+    //curl https://tah21v2noa.execute-api.us-west-2.amazonaws.com/prod/ingredients -X POST -d '{"query": {"match": {"Description": "kale"}}, "size": 1}' --header 'content-type: application/json'
     // console.log('Request: ', req)
     // console.log('Request Body: ', req.body)
     // console.log('Query: ', req.body.query)

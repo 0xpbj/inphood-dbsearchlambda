@@ -19,7 +19,7 @@ paths:
         responses:
           default:
             statusCode: 200
-        uri: arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:640960634940:function:eslambdafunction/invocations
+        uri: arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:640960634940:function:esdebuglambdafunction/invocations
         passthroughBehavior: when_no_match
         httpMethod: POST
         type: aws_proxy
@@ -47,7 +47,7 @@ paths:
             responseParameters:
               method.response.header.Access-Control-Allow-Methods: "'DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT'"
               method.response.header.Access-Control-Allow-Headers: "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token'"
-              method.response.header.Access-Control-Allow-Origin: "'http://www.inphood.com'"
+              method.response.header.Access-Control-Allow-Origin: "'http://127.0.0.1:3000'"
         passthroughBehavior: when_no_match
         requestTemplates:
           application/json: "{\"statusCode\": 200}"
@@ -63,7 +63,7 @@ paths:
         type: string
       responses: {}
       x-amazon-apigateway-integration:
-        uri: arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:640960634940:function:eslambdafunction/invocations
+        uri: arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:640960634940:function:esdebuglambdafunction/invocations
         httpMethod: POST
         type: aws_proxy
     options:
@@ -90,7 +90,7 @@ paths:
             responseParameters:
               method.response.header.Access-Control-Allow-Methods: "'DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT'"
               method.response.header.Access-Control-Allow-Headers: "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token'"
-              method.response.header.Access-Control-Allow-Origin: "'http://www.inphood.com'"
+              method.response.header.Access-Control-Allow-Origin: "'http://127.0.0.1:3000'"
         passthroughBehavior: when_no_match
         requestTemplates:
           application/json: "{\"statusCode\": 200}"

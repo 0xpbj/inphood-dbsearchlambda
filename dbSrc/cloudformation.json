@@ -109,7 +109,7 @@
                         "Ref": "LambdaFunctionS3Key"
                     }
                 },
-                "FunctionName": "eslambdafunction",
+                "FunctionName": "esdebuglambdafunction",
                 "Handler": "lambda.handler",
                 "MemorySize": 128,
                 "Role": {
