@@ -75,9 +75,9 @@ app.post('/ingredients', (req, res) => {
         query: {
           "multi_match" : {
             "query":      ingredient,
-            "fields" : ["Description^3"], 
+            "fields" : ["Description"], 
             "type":       "best_fields",
-            "operator":   "and"
+            "operator":   "or"
           }
         },
         size: size
