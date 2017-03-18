@@ -47,6 +47,32 @@ app.get('/', (req, res) => {
 //     })
 // })
 
+
+app.get('/oembed/:userId/:labelId', (req, res) => {
+  console.log('REQUEST: ', req)
+  const userId = req.params.userId
+  const labelId = req.params.labelId
+  if (userId && labelId) {
+    const url = "http://label.inphood.com/?embed=true&user="+userId+"&label="+labelId
+    const html = "<object width=\"400\" height=\"600\"><embed src="+url+"width=\"400\" height=\"600\"></embed></object>"
+    return res.status(201).json({
+      "version": "1.0",
+      "type": "rich",
+      "width": 400,
+      "height": 600,
+      "title": labelId,
+      "url": url,
+      "author_name": userId,
+      "author_url": "http://www.label.inphood.com/",
+      "provider_name": "inphood",
+      "provider_url": "http://www.inphood.com/",
+      "html": html
+    })
+  }
+  else
+    return res.status(404).json({error: "Invalid Label"})
+})
+
 app.post('/ingredients', (req, res) => {
     // const ingredient = {
     //     id: ++ingredientsIdCounter,
