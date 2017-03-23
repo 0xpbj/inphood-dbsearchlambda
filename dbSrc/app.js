@@ -70,25 +70,59 @@ app.post('/ingredients', (req, res) => {
     const query = req.body.query
     const size = req.body.size
     const ingredient = query.match.Description
-    client.search({
+
+    const iterationFourSearch = {
       body: {
         query: {
-          "multi_match" : {
-            "query":      ingredient,
-            "fields" : ["Description"], 
-            "type":       "best_fields",
-            "operator":   "or"
+          "multi_match": {
+            "query": ingredient,
+            "fields": ["Description"],
+            "type": "best_fields",
+            "operator" : "or"
           }
         },
         size: size
       }
-    }).then(function (response) {
-      console.log('Results: ', response.hits.hits)
-      return res.status(201).json({data: response.hits.hits})
-    }, function (error) {
-      console.trace(error.message)
-      return
-    })
+    }
+
+    const iterationFiveSearch = {
+      body: {
+        query : {
+          bool : {
+            must : [
+              {
+                multi_match : {
+                  query : ingredient,
+                  fields : ["Description"],
+                  type : "best_fields",
+                  operator : "or"
+                }
+              }
+            ],
+            should : [
+              { match : { Description : "raw" } },
+              { match : { Description : "spices" } },
+              { match : { Description : "tap" } } 
+            ] 
+          }
+        },
+        size: size,
+        highlight : {
+          fields : {
+            Description : {}
+          }
+        }
+      }
+    }
+    
+    client.search(iterationFiveSearch)
+      .then(function (response) {
+        console.log('Results: ', response.hits.hits)
+        return res.status(201).json({data: response.hits.hits})
+      }, function (error) {
+        console.trace(error.message)
+        return
+      })
 })
 
 // app.put('/ingredients/:ingredientsId', (req, res) => {
