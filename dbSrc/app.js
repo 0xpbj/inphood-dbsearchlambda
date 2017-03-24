@@ -125,6 +125,11 @@ app.post('/ingredients', (req, res) => {
               }
             ],
             should : [
+              { span_first : {
+                  match: { span_term : { Description : ingredient } },
+                  end : 1
+                }
+              },
               { match : { Description : "raw" } },
               { match : { Description : "spices" } },
               { match : { Description : "tap" } } 
