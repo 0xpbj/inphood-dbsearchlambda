@@ -110,6 +110,7 @@ app.post('/ingredients', (req, res) => {
       }
     }
 
+    // span_first search courtesy: http://stackoverflow.com/questions/32246524/higher-score-for-first-word-in-elasticsearch
     const iterationFiveSearch = {
       body: {
         query : {
