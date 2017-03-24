@@ -110,6 +110,11 @@ app.post('/ingredients', (req, res) => {
             }
           ],
           should : [
+            { span_first : {
+                match: { span_term : { Description : ingredient } },
+                end : 1
+              }
+            },
             { match : { Description : "raw" } },
             { match : { Description : "spices" } },
             { match : { Description : "tap" } } 
@@ -130,9 +135,9 @@ app.post('/ingredients', (req, res) => {
       console.log('Results: ', response.hits.hits)
       return res.status(201).json({data: response.hits.hits})
     }, function (error) {
-      console.trace(error.message)
-      return
-    })
+    console.trace(error.message)
+    return
+  })
 })
 
 // Export your express server so you can import it in the lambda function.
