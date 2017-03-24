@@ -49,7 +49,6 @@ app.get('/', (req, res) => {
 
 
 app.get('/oembed/:userId/:labelId', (req, res) => {
-  console.log('REQUEST: ', req)
   const userId = req.params.userId
   const labelId = req.params.labelId
   if (userId && labelId) {

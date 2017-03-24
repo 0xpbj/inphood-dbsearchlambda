@@ -5,11 +5,6 @@ const cors = require('cors')
 const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
 const app = express()
 var helmet = require('helmet')
-var elasticsearch = require('elasticsearch')
-var client = elasticsearch.Client({
-  host: '172.31.39.40:9200',
-  log: 'info'
-})
 
 app.use(cors())
 app.use(helmet())
@@ -21,12 +16,13 @@ app.get('/', (req, res) => {
     res.sendFile(`${__dirname}/index.html`)
 })
 
-app.get('/oembed/:userId/:labelId', (req, res) => {
-  const userId = req.params.userId
-  const labelId = req.params.labelId
+app.get('/oembed', (req, res) => {
+  const url = req.query.url
+  const userId = req.query.user
+  const labelId = req.query.label
   if (userId && labelId) {
     const url = "http://label.inphood.com/?embed=true&user="+userId+"&label="+labelId
-    const html = "<object width=\"400\" height=\"600\"><embed src="+url+"width=\"400\" height=\"600\"></embed></object>"
+    const html = "<object width=\"400\" height=\"600\"><embed src=\""+url+"\" width=\"400\" height=\"600\"></embed></object>"
     return res.status(201).json({
       "version": "1.0",
       "type": "rich",
@@ -45,23 +41,92 @@ app.get('/oembed/:userId/:labelId', (req, res) => {
     return res.status(404).json({error: "Invalid Label"})
 })
 
+// app.post('/ingredients', (req, res) => {
+//   const elasticsearch = require('elasticsearch')
+//   const client = elasticsearch.Client({
+//     host: '172.31.39.40:9200',
+//     log: 'info'
+//   })
+//   const query = req.body.query
+//   const size = req.body.size
+//   const ingredient = query.match.Description
+//   client.search({
+//     body: {
+//       query: {
+//         "multi_match" : {
+//           "query":      ingredient,
+//             "fields" : ["Description"], 
+//           "type":       "best_fields",
+//           "operator":   "or"
+//         }
+//       },
+//       size: size
+//     }
+//   }).then(function (response) {
+//     console.log('Results: ', response.hits.hits)
+//     return res.status(201).json({data: response.hits.hits})
+//   }, function (error) {
+//     console.trace(error.message)
+//     return
+//   })
+// })
+
 app.post('/ingredients', (req, res) => {
-    const query = req.body.query
-    const size = req.body.size
-    const ingredient = query.match.Description
-    client.search({
-      body: {
-        query: {
-          "multi_match" : {
-            "query":      ingredient,
-            "fields" : ["Description"], 
-            "type":       "best_fields",
-            "operator":   "or"
-          }
-        },
-        size: size
+  const elasticsearch = require('elasticsearch')
+  const client = elasticsearch.Client({
+    host: '172.31.39.40:9200',
+    log: 'info'
+  })
+  const query = req.body.query
+  const size = req.body.size
+  const ingredient = query.match.Description
+
+  const iterationFourSearch = {
+    body: {
+      query: {
+        "multi_match": {
+          "query": ingredient,
+          "fields": ["Description"],
+          "type": "best_fields",
+          "operator" : "or"
+        }
+      },
+      size: size
+    }
+  }
+
+  const iterationFiveSearch = {
+    body: {
+      query : {
+        bool : {
+          must : [
+            {
+              multi_match : {
+                query : ingredient,
+                fields : ["Description"],
+                type : "best_fields",
+                operator : "or"
+              }
+            }
+          ],
+          should : [
+            { match : { Description : "raw" } },
+            { match : { Description : "spices" } },
+            { match : { Description : "tap" } } 
+          ] 
+        }
+      },
+      size: size,
+      highlight : {
+        fields : {
+          Description : {}
+        }
       }
-    }).then(function (response) {
+    }
+  }
+  
+  client.search(iterationFiveSearch)
+    .then(function (response) {
       console.log('Results: ', response.hits.hits)
       return res.status(201).json({data: response.hits.hits})
     }, function (error) {
