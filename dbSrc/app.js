@@ -131,7 +131,6 @@ app.post('/ingredients', (req, res) => {
                 }
               },
               { match : { Description : "raw" } },
-              { match : { Description : "spices" } },
               { match : { Description : "tap" } } 
             ] 
           }
