@@ -132,7 +132,6 @@ app.post('/ingredients', (req, res) => {
                 }
               },
               { match : { Description : "raw" } },
-              { match : { Description : "spices" } },
               { match : { Description : "tap" } } 
             ] 
           }
@@ -151,9 +150,9 @@ app.post('/ingredients', (req, res) => {
         console.log('Results: ', response.hits.hits)
         return res.status(201).json({data: response.hits.hits})
       }, function (error) {
-        console.trace(error.message)
-        return
-      })
+      console.trace(error.message)
+      return
+    })
 })
 
 // app.put('/ingredients/:ingredientsId', (req, res) => {
