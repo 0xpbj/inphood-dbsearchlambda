@@ -88,7 +88,7 @@ def getScore(position, found):
 def main(scriptName, argv):
   # Usage / help / argument processing:
   #
-  usageString = 'Usage: ' + scriptName + ' - f <testFilePath>'
+  usageString = 'Usage: ' + scriptName + ' - f <testFilePath> [-d]'
   testFilePath = ''
   detailedOutput = False
 
