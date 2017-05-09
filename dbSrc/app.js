@@ -145,7 +145,50 @@ app.post('/ingredients', (req, res) => {
       }
     }
     
-    client.search(iterationFiveSearch)
+    const iterationSixSearch = {
+      body: {
+        query : {
+          bool : {
+            filter : {
+              match : {
+                "inPhood001" : {
+                  query : ingredient,
+                  analyzer : "description_analyzer"
+                }
+              }
+            },
+            should : [
+              {
+                match : {
+                  'Description' : {
+                    query : ingredient,
+                    analyzer : "description_analyzer"
+                  }
+                }
+              },
+              { match : { Description : "tap" } } 
+            ],
+            must_not : {
+              match : {
+                'Description' : {
+                  query : 'meatless'
+                }
+              }
+            }
+          }
+        },
+        highlight : {
+          pre_tags : [ "<strong>" ],
+          post_tags : [ "</strong>" ],
+          fields : {
+            Description : {}
+          }
+        },
+        size: size
+      }
+    }
+    
+    client.search(iterationSixSearch)
       .then(function (response) {
         console.log('Results: ', response.hits.hits)
         return res.status(201).json({data: response.hits.hits})
