@@ -35,7 +35,8 @@ get_es_indexing_configuration() {
       \"english_stop\" : {
         \"type\" : \"stop\",
         \"stopwords\" : \"_english_\"
-      },      \"light_english_stemmer\" : {
+      },
+      \"light_english_stemmer\" : {
         \"type\" : \"stemmer\",
         \"language\" : \"light_english\"
       }
@@ -71,6 +72,11 @@ es_configure_indexing() {
 # get_es_firebase_index_template:
 # ----------------------------------------
 #
+#   For info on similarity:
+#     - http://stackoverflow.com/questions/27307291/bm25-similarity-tuning-in-elasticsearch
+#     - https://www.elastic.co/guide/en/elasticsearch/guide/current/pluggable-similarites.html#bm25-tunability
+#     - https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules-similarity.html
+#
 get_es_firebase_index_template() {
   echo " \
 {\
@@ -98,6 +104,13 @@ get_es_firebase_index_template() {
           ]
         }
       }
+    },
+    \"similarity\" : {
+      \"inPhood_bm25\" : {
+        \"type\" : \"BM25\",
+        \"k1\" : \"1.2\",
+        \"b\" : \"1.0\"
+      }
     }
   },
   \"mappings\" : {
@@ -105,7 +118,23 @@ get_es_firebase_index_template() {
       \"properties\" : {
         \"Description\" : {
           \"analyzer\" :  \"description_analyzer\",
-          \"type\" : \"string\"
+          \"type\" : \"string\",
+          \"fields\" : {
+            \"raw\" : {
+              \"type\" : \"string\",
+              \"analyzer\" : \"whitespace\"
+            }
+          }
+        },
+        \"inPhood001\" : {
+          \"analyzer\" : \"description_analyzer\",
+          \"type\" : \"string\",
+          \"fields\" : {
+            \"raw\" : {
+              \"type\" : \"string\",
+              \"analyzer\" : \"whitespace\"
+            }
+          }
         }
       }
     } 
@@ -115,8 +144,8 @@ get_es_firebase_index_template() {
 
 
 alias es_set_firebase_template="curl -XPUT '$es_instance/_template/firebase_template?pretty' -H 'Content-Type: application/json' -d '$( get_es_firebase_index_template )'"
+alias es_get_firebase_template="curl -XGET '$es_instance/_template/firebase_template?pretty'"
 alias es_rm_firebase_template="curl -XDELETE '$es_instance/_template/firebase_template?pretty'"
-
 
 #
 # ELASTICSEARCH TEST QUERIES
@@ -229,7 +258,126 @@ get_es_query_bool_multi_match() {
     \"fields\" : {\
       \"Description\" : {}\
     }\
-  }\
+  },\
+  \"fielddata_fields\" : [ \
+    \"Description\" \
+  ] \
+}"
+}
+
+#get_es_query_laser_match() {
+#  echo " \
+#{
+#  \"query\" : {
+#    \"bool\" : {
+#      \"must\" : [
+#        {
+#          \"match\" : {
+#            \"inPhood001\" : {
+#              \"query\" : \"$1\",
+#              \"analyzer\" : \"description_analyzer\"
+#            }
+#          }
+#        }
+#      ],
+#      \"should\" : [
+#        {
+#          \"match\" : {\
+#            \"Description\" : {
+#              \"query\" : \"$1\",
+#              \"analyzer\" : \"description_analyzer\"
+#            }
+#          }
+#        }
+#      ]
+#    }
+#  },
+#  \"highlight\" : {
+#    \"fields\" : {
+#      \"Description\" : {}
+#    }
+#  },
+#  \"fielddata_fields\" : [ 
+#    \"Description\" 
+#  ] 
+#}"
+#}
+#
+get_es_query_laser_match() {
+  echo " \
+{
+  \"query\" : {
+    \"bool\" : {
+      \"filter\" : {
+        \"match\" : {
+          \"inPhood001\" : {
+            \"query\" : \"$1\",
+            \"analyzer\" : \"description_analyzer\"
+          }
+        }
+      },
+      \"should\" : [
+        {
+          \"match\" : {\
+            \"Description\" : {
+              \"query\" : \"$1\",
+              \"analyzer\" : \"description_analyzer\"
+            }
+          }
+        },
+        {
+          \"match\" : {
+            \"Description\" : {
+              \"query\" : \"tap\"
+            }
+          }
+        }
+      ]
+    }
+  },
+  \"highlight\" : {
+    \"fields\" : {
+      \"Description\" : {}
+    }
+  },
+  \"fielddata_fields\" : [ 
+    \"Description\" 
+  ] 
+}"
+}
+
+get_es_query_laser_match_test () {
+  echo " \
+{
+  \"query\" : {
+    \"bool\" : {
+      \"filter\" : {
+        \"match\" : {
+          \"inPhood001\" : {
+            \"query\" : \"$1\",
+            \"analyzer\" : \"description_analyzer\"
+          }
+        }
+      },
+      \"should\" : [
+        {
+          \"match\" : {
+            \"Description\" : {
+              \"query\" : \"$1\",
+              \"analyzer\" : \"description_analyzer\"
+            }
+          }
+        },
+        {
+          \"match\" : {
+            \"Description\" : {
+              \"query\" : \"tap\"
+            }
+          }
+        }
+      ]
+    }
+  }
 }"
 }
 
@@ -239,6 +387,23 @@ es_multi_match() {
 
 es_heuristic_match() {
   curl -XPOST "$es_instance/firebase/_search?pretty" -d "$( get_es_query_bool_multi_match "$1" )"
+}
+
+es_laser_match() {
+  curl -XPOST "$es_instance/firebase/_search?pretty" -d "$( get_es_query_laser_match "$1" )"
+
+}
+
+# Pass this a search term and the result in the db to get an explanation of the scoring, e.g.:
+#
+#   es_laser_explain water 14411
+#
+es_laser_explain() {
+  curl -XGET "$es_instance/firebase/NutritionInfo/$2/_explain?format=yaml" -d "$( get_es_query_laser_match_test "$1" )"
+}
+
+es_laser_validate() {
+  curl -XGET "$es_instance/firebase/_validate/query?explain&pretty" -d "$( get_es_query_laser_match "$1" )"
 }
 
 alias es_multi_match_avocado="curl -XPOST '$es_instance/firebase/_search?pretty' -d '$( get_es_query_multi_match avocado )'"

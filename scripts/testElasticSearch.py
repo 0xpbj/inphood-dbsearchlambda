@@ -38,18 +38,81 @@ def getQueryDSL(query):
           },
           {
             'match' : {
-              'Description' : 'raw'
+              'Description' : {
+                'query' : 'raw'
+              }
             }
           },
           {
             'match' : {
-              'Description' : 'tap'
+              'Description' : {
+                'query' : 'tap'
+              }
             }
           }
         ]
       }
     },
     'highlight' : {
+      'pre_tags': [
+        "<strong>"
+      ],
+      'post_tags': [
+        "</strong>"
+      ],
+      'fields' : {
+        'Description' : {}
+      }
+    }
+  })
+  return dsl
+
+def getQueryDSL_v2(query):
+  quotedQuery = '"' + query + '"'
+  dsl = json.dumps({
+    'query' : {
+      'bool' : {
+        'filter' : {
+          'match' : {
+            'inPhood001' : {
+              'query' : quotedQuery,
+              'analyzer' : 'description_analyzer'
+            }
+          }
+        },
+        'should' : [
+          {
+            'match' : {
+              'Description' : {
+                'query' : quotedQuery,
+                'analyzer' : 'description_analyzer'
+              }
+            }
+          },
+          {
+            'match' : {
+              'Description' : {
+                'query' : 'tap'
+              }
+            }
+          },
+        ],
+        'must_not' : {
+          'match' : {
+            'Description' : {
+              'query' : 'meatless'
+            }
+          }
+        }
+      }
+    },
+    'highlight' : {
+      'pre_tags': [
+        "<strong>"
+      ],
+      'post_tags': [
+        "</strong>"
+      ],
       'fields' : {
         'Description' : {}
       }
@@ -88,12 +151,13 @@ def getScore(position, found):
 def main(scriptName, argv):
   # Usage / help / argument processing:
   #
-  usageString = 'Usage: ' + scriptName + ' - f <testFilePath> [-d]'
-  testFilePath = ''
+  usageString = 'Usage: ' + scriptName + ' - f <testFilePath> [-d][-n="note"]'
   detailedOutput = False
+  testFilePath = ''
+  note = ''
 
   try:
-    opts, args = getopt.getopt(argv, "hdf:", ["testFilePath="])
+    opts, args = getopt.getopt(sys.argv[1:], "hdf:n:", ["testFilePath=", "note="])
   except getopt.GetoptError:
     print usageString
     sys.exit()
@@ -109,6 +173,15 @@ def main(scriptName, argv):
       if (testFilePath == ''):
         print usageString
         sys.exit()
+    elif opt in ("-n", "--note"):
+      note = arg
+    else:
+      print usageString
+      sys.exit()
+
+  if (testFilePath == ''):
+    print usageString
+    sys.exit()
 
   combinedScore = 0
   maxCombinedScore = 0
@@ -120,7 +193,7 @@ def main(scriptName, argv):
     for line in testFile:
       maxCombinedScore += 100
 
-      # Find quote delimted fields--first one is the query, second is the expected result
+      # Find quote delimited fields--first one is the query, second is the expected result
       matches = re.findall('".*?"', line)
       if (len(matches) != 2):
         raise Exception('Unexpected input from ' + testFilePath + ': ' + line)
@@ -129,7 +202,7 @@ def main(scriptName, argv):
 
       # Now send a request to our elastic search server for the query:
       #
-      response = requests.post('http://35.167.212.47:9200/firebase/_search?pretty', data=getQueryDSL(query))
+      response = requests.post('http://35.167.212.47:9200/firebase/_search?pretty', data=getQueryDSL_v2(query))
       obj = json.loads(response.content)
 
       # Now iterate over the results and determine the position of the 
@@ -140,7 +213,7 @@ def main(scriptName, argv):
       for result in obj["hits"]["hits"]:
         position += 1
         description = result["_source"]["Description"]
-        detailedResult += "   " + description + "\n"
+        detailedResult += "   " + description + " (id=" + str(result["_id"]) + ", score=" + str(result["_score"]) + ")\n"
         if description.lower() == expected.lower():
           found = True
           break
@@ -153,7 +226,11 @@ def main(scriptName, argv):
       score = getScore(position, found)
       combinedScore += score
 
+    print ""
     print "Combined test result: " + str(combinedScore) + " / " + str(maxCombinedScore)
+    if (note != ''):
+      print "(" + note + ")"
+    print "--------------------------------------------------------------------------------"
     print ""
 
     if detailedOutput:

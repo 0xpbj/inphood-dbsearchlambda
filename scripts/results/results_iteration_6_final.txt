@@ -1,0 +1,127 @@
+
+Combined test result: 1230 / 2200
+(Iteration 6 Final Score)
+--------------------------------------------------------------------------------
+
+yellow onion (expecting: "Onions, raw"):
+   Onions, yellow, sauteed (id=11286, score=1.4774098)
+   Onions, raw (id=11282, score=0.5673674)
+
+pepper (expecting: "Spices, pepper, black"):
+   Spices, pepper, red or cayenne (id=02031, score=1.3375583)
+   Peppers, sweet, red, cooked, boiled, drained, with salt (id=11824, score=1.0031687)
+   Peppered loaf, pork, beef (id=07056, score=0.9361064)
+   Spices, pepper, black (id=02030, score=0.9361064)
+
+bell pepper (expecting: "Peppers, sweet, green, raw"):
+   Spices, pepper, red or cayenne (id=02031, score=0.5083462)
+   Peppers, sweet, red, cooked, boiled, drained, with salt (id=11824, score=0.38125965)
+   Peppered loaf, pork, beef (id=07056, score=0.34940958)
+   Spices, pepper, black (id=02030, score=0.34940958)
+   Peppers, serrano, raw (id=11977, score=0.33179772)
+   Peppers, jalapeno, raw (id=11979, score=0.33179772)
+   Peppers, sweet, green, raw (id=11333, score=0.30952272)
+
+bacon (expecting: "Pork, cured, bacon, unprepared"):
+   Pork, cured, bacon, unprepared (id=10123, score=1.088506)
+
+chicken (expecting: "Chicken, broilers or fryers, breast, meat and skin, raw"):
+   Chicken spread (id=07018, score=0.6218637)
+   Chicken, feet, boiled (id=05335, score=0.54705054)
+   Chicken, roasting, giblets, raw (id=05115, score=0.51682925)
+   Chicken, stewing, giblets, raw (id=05127, score=0.51627547)
+   Chicken, ground, raw (id=05332, score=0.51627547)
+   Chicken patty, frozen, uncooked (id=05323, score=0.49749097)
+   Chicken patty, frozen, cooked (id=05324, score=0.49749097)
+   Chicken, broilers or fryers, giblets, raw (id=05020, score=0.47866923)
+   Chicken, gizzard, all classes, raw (id=05023, score=0.47866923)
+   Chicken, liver, all classes, raw (id=05027, score=0.47866923)
+
+greek yogurt (expecting: "Yogurt, greek, plain, lowfat"):
+   Yogurt, Greek, strawberry, nonfat (id=01285, score=1.8722472)
+   Yogurt, Greek, strawberry, lowfat (id=01284, score=1.8669742)
+   Yogurt, Greek, plain, lowfat (id=01287, score=1.8425858)
+
+red onion (expecting: "Onions, sweet, raw"):
+   Onions, raw (id=11282, score=0.59085757)
+   Peas and onions, frozen, unprepared (id=11326, score=0.47268605)
+   Peas and onions, canned, solids and liquids (id=11324, score=0.4006694)
+   Onions, yellow, sauteed (id=11286, score=0.38792774)
+   Onions, frozen, whole, unprepared (id=11289, score=0.38792774)
+   Onions, sweet, raw (id=11294, score=0.38792774)
+
+mint (expecting: "Spearmint, fresh"):
+   Spearmint, fresh (id=02065, score=0.0)
+
+almond milk (expecting: "Beverages, almond milk, unsweetened, shelf stable"):
+   Beverages, almond milk, chocolate, ready-to-drink (id=14054, score=1.0156877)
+   Beverages, almond milk, unsweetened, shelf stable (id=14091, score=1.0156877)
+
+burger bun (expecting: "PEPPERIDGE FARM, Hamburger Bun"):
+   Cinnamon buns, frosted (includes honey buns) (id=18964, score=0.6286706)
+   Veggie burgers or soyburgers, unprepared (id=16147, score=0.39604408)
+   GARDENBURGER Flame Grilled Burger, frozen, unprepared (id=16581, score=0.33346236)
+   GARDENBURGER Veggie Medley Burger, frozen, unprepared (id=16586, score=0.33346236)
+   GARDENBURGER Sun-Dried Tomato Basil Burger, frozen, unprepared (id=16585, score=0.3074146)
+   GARDENBURGER Black Bean Chipotle Burger, frozen, unprepared (id=16570, score=0.29703307)
+   GARDENBURGER Savory Portabella Veggie Burger, frozen, unprepared (id=16584, score=0.29703307)
+
+green cabbage (expecting: "Cabbage, raw"):
+   Swamp cabbage, (skunk cabbage), raw (id=11503, score=0.5980125)
+   Cabbage, raw (id=11109, score=0.58102816)
+
+salt (expecting: "Salt, table"):
+   Salt, table (id=02047, score=0.45866504)
+
+sugar (expecting: "Sugars, granulated"):
+   Sugars, granulated (id=19335, score=0.93339235)
+
+jasmin rice (expecting: "Rice, white, medium-grain, raw, enriched"):
+   Rice bran, crude (id=20060, score=0.30445507)
+   Rice flour, white, unenriched (id=20061, score=0.29370743)
+   Beverages, rice milk, unsweetened (id=14639, score=0.29360038)
+   Rice noodles, dry (id=20133, score=0.29360038)
+   Alcoholic beverage, rice (sake) (id=43479, score=0.28583378)
+   Wild rice, cooked (id=20089, score=0.28583378)
+   Rice noodles, cooked (id=20134, score=0.28583378)
+   Wild rice, raw (id=20088, score=0.28249833)
+   Rice flour, brown (id=20090, score=0.28249833)
+   Rice, brown, long-grain, raw (id=20036, score=0.2663982)
+
+thai green chiles (expecting: "hot chili, green, raw"):
+   Peppers, hot chile, sun-dried (id=11962, score=0.29364166)
+   Turnip greens, raw (id=11568, score=0.18041496)
+   Chicory greens, raw (id=11152, score=0.16003174)
+   Dandelion greens, raw (id=11207, score=0.16003174)
+   Turnip greens, frozen, unprepared (id=11574, score=0.16003174)
+   Mustard greens, raw (id=11270, score=0.15709911)
+   Beet greens, raw (id=11086, score=0.15709911)
+   Mustard greens, frozen, unprepared (id=11272, score=0.15496652)
+   Turnip greens, canned, solids and liquids (id=11570, score=0.14002778)
+   Turnip greens and turnips, frozen, unprepared (id=11576, score=0.13559571)
+
+ginger, peeled, cut (expecting: "ginger root, raw"):
+   Ginger root, raw (id=11216, score=0.35844678)
+
+shallot, thinly sliced (expecting: "shallots, raw"):
+   Shallots, raw (id=11677, score=0.41534626)
+
+light brown sugar (expecting: "Sugars, brown"):
+   Sugars, brown (id=19334, score=1.0352974)
+
+turnips, trimmed, thinly sliced (expecting: "turnips, raw"):
+   Turnip greens, frozen, unprepared (id=11574, score=0.22199646)
+   Turnips, frozen, unprepared (id=11566, score=0.22072618)
+   Turnips, raw (id=11564, score=0.21067812)
+
+radishes, trimmed, thinly sliced (expecting: "radishes, raw"):
+   Radishes, raw (id=11429, score=0.3026051)
+
+toasted peanuts (expecting: "peanuts, all types, raw"):
+   Peanuts, all types, raw (id=16087, score=0.35088426)
+
+water (expecting: "Beverages, water, tap, drinking"):
+   Beverages, water, tap, municipal (id=14429, score=4.265593)
+   Beverages, water, tap, drinking (id=14411, score=3.9493613)
+
+

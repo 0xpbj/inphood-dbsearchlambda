@@ -1,0 +1,153 @@
+
+Combined test result: 680 / 2200
+(Iteration 6 Baseline Score)
+--------------------------------------------------------------------------------
+
+yellow onion (expecting: "Onions, raw"):
+   Corn, sweet, yellow, canned, drained solids, rinsed with tap water (id=11177, score=0.75845337)
+   Onions, raw (id=11282, score=0.610463)
+
+pepper (expecting: "Spices, pepper, black"):
+   Peppers, serrano, raw (id=11977, score=0.78720325)
+   Peppers, jalapeno, raw (id=11979, score=0.78720325)
+   Peppers, sweet, green, raw (id=11333, score=0.75694036)
+   Peppers, sweet, yellow, raw (id=11951, score=0.72659755)
+   Pepper, banana, raw (id=11976, score=0.72659755)
+   Peppers, hungarian, raw (id=11981, score=0.72659755)
+   Peppers, sweet, red, raw (id=11821, score=0.72659755)
+   Peppers, hot chili, red, raw (id=11819, score=0.72038174)
+   Peppers, hot chili, green, raw (id=11670, score=0.68880284)
+   Spices, pepper, red or cayenne (id=02031, score=0.4969575)
+
+bell pepper (expecting: "Peppers, sweet, green, raw"):
+   Peppers, serrano, raw (id=11977, score=0.38942015)
+   Peppers, jalapeno, raw (id=11979, score=0.38942015)
+   Peppers, sweet, green, raw (id=11333, score=0.38007817)
+
+bacon (expecting: "Pork, cured, bacon, unprepared"):
+   Bacon, meatless (id=16104, score=0.54780835)
+   Pork, cured, bacon, unprepared (id=10123, score=0.40410957)
+
+chicken (expecting: "Chicken, broilers or fryers, breast, meat and skin, raw"):
+   Chicken, stewing, giblets, raw (id=05127, score=0.50483525)
+   Chicken, ground, raw (id=05332, score=0.50483525)
+   Chicken, roasting, giblets, raw (id=05115, score=0.5047951)
+   Chicken, capons, giblets, raw (id=05137, score=0.46899235)
+   Chicken, broilers or fryers, giblets, raw (id=05020, score=0.45845532)
+   Chicken, gizzard, all classes, raw (id=05023, score=0.45845532)
+   Chicken, liver, all classes, raw (id=05027, score=0.45845532)
+   Chicken, stewing, meat and skin, raw (id=05123, score=0.45845532)
+   Chicken, skin (drumsticks and thighs), raw (id=05674, score=0.4416957)
+   Chicken, heart, all classes, raw (id=05025, score=0.4416957)
+
+greek yogurt (expecting: "Yogurt, greek, plain, lowfat"):
+   Yogurt, Greek, strawberry, lowfat (id=01284, score=0.75988483)
+   Yogurt, Greek, strawberry, nonfat (id=01285, score=0.7533808)
+   Yogurt, Greek, plain, lowfat (id=01287, score=0.7403351)
+
+red onion (expecting: "Onions, sweet, raw"):
+   Onions, raw (id=11282, score=0.6252219)
+   Beans, kidney, red, mature seeds, canned, drained solids, rinsed in tap water (id=16335, score=0.50529873)
+   Onions, sweet, raw (id=11294, score=0.43008974)
+
+mint (expecting: "Spearmint, raw"):
+   Candies, NESTLE, AFTER EIGHT Mints (id=19153, score=0.47680378)
+   BARBARA DEE, Winter Mints Cookies (id=18991, score=0.46464655)
+   GIRL SCOUTS, Thin Mints Cookies (id=28035, score=0.45542166)
+   MURRAY, SUGAR FREE, Fudge Dipped Mint Cookies (id=28223, score=0.39665425)
+   KEEBLER, FUDGE SHOPPE, Grasshopper Cookies, Fudge Mint (id=28093, score=0.30437768)
+   KEEBLER, FUDGE SHOPPE, Merry Mint Patties, Holiday (id=28097, score=0.30437768)
+   KEEBLER, FUDGE SHOPPE, Mint Creme Middles, Chocolate Graham Cookies (id=28078, score=0.25364807)
+   Ice creams, BREYERS, All Natural Light Mint Chocolate Chip (id=19879, score=0.25364807)
+   KEEBLER, 100 Calorie RIGHT BITES, FUDGE SHOPPE, Mini Mints Grasshopper Cookies (id=28120, score=0.20291846)
+
+almond milk (expecting: "Beverages, almond milk, unsweetened, shelf table"):
+   Candies, milk chocolate, with almonds (id=19132, score=0.53039134)
+   Candies, TOBLERONE, milk chocolate with honey and almond nougat (id=19001, score=0.42373577)
+   Candies, HERSHEY'S MILK CHOCOLATE WITH ALMOND BITES (id=19236, score=0.39779353)
+   Beverages, almond milk, chocolate, ready-to-drink (id=14054, score=0.389167)
+   Beverages, almond milk, unsweetened, shelf stable (id=14091, score=0.389167)
+   Beverages, almond milk, sweetened, vanilla flavor, ready-to-drink (id=14016, score=0.3314946)
+   Beverages, chocolate almond milk, unsweetened, shelf-stable, fortified with vitamin D2 and E (id=14092, score=0.28098243)
+   Oil, almond (id=04529, score=0.23605682)
+   Nuts, coconut milk, raw (liquid expressed from grated meat and water) (id=12117, score=0.20543328)
+   Nuts, almonds (id=12061, score=0.20053974)
+
+burger bun (expecting: "PEPPERIDGE FARM, Hamburger Bun"):
+   Cinnamon buns, frosted (includes honey buns) (id=18964, score=0.25524646)
+   PEPPERIDGE FARM, Hamburger Bun (id=28394, score=0.20245466)
+
+green cabbage (expecting: "Cabbage, raw"):
+   Peas, green, canned, drained solids, rinsed in tap water (id=11311, score=0.72694904)
+   Cabbage, raw (id=11109, score=0.6133852)
+
+salt (expecting: "Salt, table"):
+   Pork, cured, salt pork, raw (id=10165, score=0.38478202)
+   Egg, whole, raw, frozen, salted, pasteurized (id=01255, score=0.3176254)
+   Egg, yolk, raw, frozen, salted, pasteurized (id=01160, score=0.29905617)
+   Butter, salted (id=01001, score=0.16114584)
+   Salt, table (id=02047, score=0.15475325)
+
+sugar (expecting: "Sugars, granulated"):
+   Sugar-apples, (sweetsop), raw (id=09321, score=0.68056965)
+   Egg, yolk, raw, frozen, sugared, pasteurized (id=01127, score=0.4996007)
+   Sugar, turbinado (id=19908, score=0.32544905)
+   Sugars, brown (id=19334, score=0.32181)
+   Sugars, powdered (id=19336, score=0.31903267)
+   Sugars, granulated (id=19335, score=0.3186406)
+
+jasmin rice (expecting: "Rice, white, medium-grain, raw, enriched"):
+   Wild rice, raw (id=20088, score=0.3581317)
+   Rice, brown, long-grain, raw (id=20036, score=0.32127357)
+   Rice, brown, medium-grain, raw (id=20040, score=0.30765134)
+   Rice, white, medium-grain, raw, enriched (id=20050, score=0.27537733)
+
+thai green chiles (expecting: "hot chili, green, raw"):
+   Peas, green, canned, drained solids, rinsed in tap water (id=11311, score=0.56456035)
+   Turnip greens, raw (id=11568, score=0.25961685)
+   Soybeans, green, raw (id=11450, score=0.25961685)
+   Mustard greens, raw (id=11270, score=0.2490168)
+   Peppers, sweet, green, raw (id=11333, score=0.2490168)
+   Beet greens, raw (id=11086, score=0.2490168)
+   Pears, raw, green anjou (id=09415, score=0.24489936)
+   Cauliflower, green, raw (id=11965, score=0.24489936)
+   Tomatoes, green, raw (id=11527, score=0.24489936)
+   Lettuce, green leaf, raw (id=11253, score=0.24489936)
+
+ginger, peeled, cut (expecting: "ginger root, raw"):
+   Lemons, raw, without peel (id=09150, score=0.4138264)
+   Ginger root, raw (id=11216, score=0.41218323)
+
+shallot, thinly sliced (expecting: "shallots, raw"):
+   Beef, sandwich steaks, flaked, chopped, formed and thinly sliced, raw (id=13342, score=0.62436146)
+   Shallots, raw (id=11677, score=0.4882738)
+
+light brown sugar (expecting: "Sugars, brown"):
+   Mushrooms, brown, italian, or crimini, exposed to ultraviolet light, raw (id=11936, score=0.46946624)
+   Sugars, brown (id=19334, score=0.42127657)
+
+turnips, trimmed, thinly sliced (expecting: "turnips, raw"):
+   Beef, sandwich steaks, flaked, chopped, formed and thinly sliced, raw (id=13342, score=0.4961787)
+   Turnips, raw (id=11564, score=0.32267338)
+
+radishes, trimmed, thinly sliced (expecting: "radishes, raw"):
+   Beef, sandwich steaks, flaked, chopped, formed and thinly sliced, raw (id=13342, score=0.4900282)
+   Radishes, raw (id=11429, score=0.39036727)
+
+toasted peanuts (expecting: "peanuts, all types, raw"):
+   KEEBLER, Toast  &  Peanut Butter Sandwich Crackers (id=28110, score=0.4266278)
+   Peanuts, all types, raw (id=16087, score=0.40746558)
+
+water (expecting: "water, tap, drinking"):
+   Beverages, water, tap, municipal (id=14429, score=1.491153)
+   Beverages, water, tap, drinking (id=14411, score=1.322778)
+   Beverages, water, tap, well (id=14412, score=1.322778)
+   Beverages, coffee, brewed, prepared with tap water, decaffeinated (id=14201, score=1.1672466)
+   Beverages, coffee, brewed, prepared with tap water (id=14209, score=1.1005913)
+   Beverages, tea, black, brewed, prepared with tap water (id=14355, score=1.1005913)
+   Beverages, tea, black, brewed, prepared with tap water, decaffeinated (id=14352, score=0.94263095)
+   Corn, sweet, yellow, canned, drained solids, rinsed with tap water (id=11177, score=0.94263095)
+   Peas, green, canned, drained solids, rinsed in tap water (id=11311, score=0.9319706)
+   Beans, pinto, mature seeds, canned, drained solids, rinsed in tap water (id=16345, score=0.8267362)
+
+
